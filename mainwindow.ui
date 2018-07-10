@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>630</height>
+    <height>650</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -794,6 +794,13 @@
      <widget class="QPlainTextEdit" name="txtResult">
       <property name="readOnly">
        <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>При расчётах используется библиотека NREL's Solar Position Algorithm (SPA) (&lt;a href=&quot;http://midcdmz.nrel.gov/spa/&quot;&gt;http://midcdmz.nrel.gov/spa/&lt;/a&gt;)</string>
       </property>
      </widget>
     </item>
