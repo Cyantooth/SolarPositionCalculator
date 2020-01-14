@@ -1,8 +1,7 @@
-#include <QDateTime>
+#include <QtMath>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "spa.cpp"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,27 +10,27 @@ MainWindow::MainWindow(QWidget *parent) :
     memset(&spa, 0, sizeof(spa));
     ui->setupUi(this);
 
-    // Заполним значениями по умолчанию
-    spa.timezone = ui->sldTimeZone->value();
-    spa.delta_t = ui->sldDeltaT->value();
-    spa.elevation = ui->sldElevation->value();
-    spa.pressure = ui->sldPressure->value();
-    spa.temperature = ui->sldTemperature->value();
-    spa.slope = ui->sldSlope->value();
-    spa.azm_rotation = ui->sldAzmRot->value();
+    // Setup default values
+    spa.timezone      = ui->sldTimeZone->value();
+    spa.delta_t       = ui->sldDeltaT->value();
+    spa.elevation     = ui->sldElevation->value();
+    spa.pressure      = ui->sldPressure->value();
+    spa.temperature   = ui->sldTemperature->value();
+    spa.slope         = ui->sldSlope->value();
+    spa.azm_rotation  = ui->sldAzmRot->value();
     spa.atmos_refract = ui->sldRefract->value() / 100.0;
-    spa.latitude = ui->spnLatitude->value();
-    spa.longitude = ui->spnLongitude->value();
+    spa.latitude      = ui->spnLatitude->value();
+    spa.longitude     = ui->spnLongitude->value();
     spa.function = SPA_ALL;
 
-    ui->lblTimeZoneVal->setText(((spa.timezone > 0)?"+":"") + QString::number(spa.timezone));
-    ui->lblDeltaTVal->setText(QString::number(spa.delta_t));
-    ui->lblElevationVal->setText(QString::number(spa.elevation));
-    ui->lblPressureVal->setText(QString::number(spa.pressure));
-    ui->lblTemperatureVal->setText(QString::number(spa.temperature));
-    ui->lblSlopeVal->setText(QString::number(spa.slope));
-    ui->lblAzmRotVal->setText(QString::number(spa.azm_rotation));
-    ui->lblRefractVal->setText(QString::number(spa.atmos_refract));
+    ui->lblTimeZoneVal    -> setText(((spa.timezone > 0) ? "+" : "") + QString::number(spa.timezone));
+    ui->lblDeltaTVal      -> setText(QString::number(spa.delta_t));
+    ui->lblElevationVal   -> setText(QString::number(spa.elevation));
+    ui->lblPressureVal    -> setText(QString::number(spa.pressure));
+    ui->lblTemperatureVal -> setText(QString::number(spa.temperature));
+    ui->lblSlopeVal       -> setText(QString::number(spa.slope));
+    ui->lblAzmRotVal      -> setText(QString::number(spa.azm_rotation));
+    ui->lblRefractVal     -> setText(QString::number(spa.atmos_refract));
 
     setDateTime();
     connect(ui->chbCurrentTime, SIGNAL(toggled(bool)), this, SLOT(onCurrentDate(bool)));
@@ -194,7 +193,7 @@ void MainWindow::setDateTime()
 
     ui->calendarWidget->setSelectedDate(d.date());
     ui->spnYear->setValue(d.date().year());
-    ui->spnMonth->setValue( d.date().month());
+    ui->spnMonth->setValue(d.date().month());
     ui->spnDay->setValue(d.date().day());
     ui->spnHour->setValue(d.time().hour());
     ui->spnMinute->setValue(d.time().minute());
@@ -219,18 +218,20 @@ void MainWindow::doCalc()
         ui->txtResult->appendPlainText("Azimuth: " + QString::number(spa.azimuth) + "°");
         ui->txtResult->appendPlainText("Incidence: " + QString::number(spa.incidence) + "°");
 
-        QTime t;
-        float min, sec;
-        min = 60.0 * (spa.sunrise - (int)(spa.sunrise));
-        sec = 60.0 * (min - (int)min);
-        t.setHMS(spa.sunrise, min, sec);
-        ui->txtResult->appendPlainText(QString("Sunrise: %1 Local Time").arg(t.toString("HH:mm:ss")));
+        double min, sec;
+        min = 60.0 * modf(spa.sunrise, nullptr);
+        sec = 60.0 * modf(min, nullptr);
+        ui->txtResult->appendPlainText(QString("Sunrise: %1:%2:%3 Local Time")
+                                       .arg(spa.sunrise, 2, 'f', 0, '0')
+                                       .arg(min, 2, 'f', 0, '0')
+                                       .arg(sec, 2, 'f', 0, '0'));
 
-        min = 60.0 * (spa.sunset - (int)(spa.sunset));
-        sec = 60.0 * (min - (int)min);
-        t.setHMS(spa.sunset, min, sec);
-        ui->txtResult->appendPlainText(QString("Sunset: %1 Local Time").arg(t.toString("HH:mm:ss")));
-
+        min = 60.0 * modf(spa.sunset, nullptr);
+        sec = 60.0 * modf(min, nullptr);
+        ui->txtResult->appendPlainText(QString("Sunset: %1:%2:%3 Local Time")
+                                       .arg(spa.sunset, 2, 'f', 0, '0')
+                                       .arg(min, 2, 'f', 0, '0')
+                                       .arg(sec, 2, 'f', 0, '0'));
     } else
     {
         ui->txtResult->setPlainText("Error: " + QString::number(result));

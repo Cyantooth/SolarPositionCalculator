@@ -124,7 +124,7 @@
              <item row="1" column="3">
               <widget class="QLabel" name="lblMinute">
                <property name="text">
-                <string>Минуты:</string>
+                <string>Minutes:</string>
                </property>
               </widget>
              </item>
@@ -147,7 +147,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>Часы:</string>
+                <string>Hours:</string>
                </property>
               </widget>
              </item>
@@ -170,7 +170,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>Год:</string>
+                <string>Year:</string>
                </property>
               </widget>
              </item>
@@ -184,21 +184,21 @@
              <item row="2" column="0">
               <widget class="QLabel" name="lblDay">
                <property name="text">
-                <string>День:</string>
+                <string>Day:</string>
                </property>
               </widget>
              </item>
              <item row="2" column="3">
               <widget class="QLabel" name="lblSecond">
                <property name="text">
-                <string>Секунды:</string>
+                <string>Seconds:</string>
                </property>
               </widget>
              </item>
              <item row="1" column="0">
               <widget class="QLabel" name="lblMonth">
                <property name="text">
-                <string>Месяц:</string>
+                <string>Month:</string>
                </property>
               </widget>
              </item>
@@ -241,7 +241,7 @@
           <item>
            <widget class="QCheckBox" name="chbCurrentTime">
             <property name="text">
-             <string>Использовать текущие дату и время</string>
+             <string>Use system date and time</string>
             </property>
            </widget>
           </item>
@@ -275,7 +275,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>Широта:</string>
+                <string>Latitude:</string>
                </property>
               </widget>
              </item>
@@ -293,8 +293,8 @@
                 </font>
                </property>
                <property name="text">
-                <string>+ для северной
-- для южной</string>
+                <string>+ for the North
+- for the South</string>
                </property>
               </widget>
              </item>
@@ -307,7 +307,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>Долгота:</string>
+                <string>Longitude:</string>
                </property>
               </widget>
              </item>
@@ -325,13 +325,16 @@
                 </font>
                </property>
                <property name="text">
-                <string>+ для восточной
-- для западной</string>
+                <string>+ for the East
+- for the West</string>
                </property>
               </widget>
              </item>
              <item row="0" column="1">
               <widget class="QDoubleSpinBox" name="spnLatitude">
+               <property name="toolTip">
+                <string>Observer latitude (negative south of equator)</string>
+               </property>
                <property name="decimals">
                 <number>6</number>
                </property>
@@ -348,6 +351,9 @@
              </item>
              <item row="1" column="1">
               <widget class="QDoubleSpinBox" name="spnLongitude">
+               <property name="toolTip">
+                <string>Observer longitude (negative west of Greenwich)</string>
+               </property>
                <property name="decimals">
                 <number>6</number>
                </property>
@@ -375,6 +381,9 @@
            <horstretch>1</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="locale">
+          <locale language="English" country="UnitedKingdom"/>
          </property>
          <property name="maximumDate">
           <date>
@@ -421,7 +430,7 @@
        <item row="0" column="1">
         <widget class="QLabel" name="lblPressure">
          <property name="text">
-          <string>Давление</string>
+          <string>Pressure</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -430,8 +439,11 @@
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="lblElevation">
+         <property name="toolTip">
+          <string/>
+         </property>
          <property name="text">
-          <string>Высота</string>
+          <string>Elevation</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -445,6 +457,9 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Surface azimuth rotation (measured from south to projection of surface normal on horizontal plane, negative east)</string>
          </property>
          <property name="minimum">
           <number>-360</number>
@@ -471,6 +486,9 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="toolTip">
+          <string>Atmospheric refraction at sunrise and sunset (0.5667 deg is typical)</string>
+         </property>
          <property name="maximum">
           <number>500</number>
          </property>
@@ -492,6 +510,9 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Observer elevation [meters]</string>
          </property>
          <property name="minimum">
           <number>-1000</number>
@@ -516,8 +537,8 @@
        <item row="0" column="4">
         <widget class="QLabel" name="lblAzmRot">
          <property name="text">
-          <string>Азимутальное
-вращение</string>
+          <string>Azimuth
+rotation</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -527,7 +548,7 @@
        <item row="0" column="2">
         <widget class="QLabel" name="lblTemperature">
          <property name="text">
-          <string>Температура</string>
+          <string>Temperature</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -541,6 +562,9 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Surface slope (measured from the horizontal plane)</string>
          </property>
          <property name="minimum">
           <number>0</number>
@@ -572,8 +596,8 @@
        <item row="0" column="5">
         <widget class="QLabel" name="lblRefract">
          <property name="text">
-          <string>Рефракция
-атмосферы</string>
+          <string>Atmospheric
+refraction</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -587,6 +611,9 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Annual average local temperature [degrees Celsius]</string>
          </property>
          <property name="minimum">
           <number>-50</number>
@@ -611,7 +638,7 @@
        <item row="0" column="3">
         <widget class="QLabel" name="lblSlope">
          <property name="text">
-          <string>Наклонение</string>
+          <string>Slope</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -625,6 +652,9 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Annual average local pressure [millibars]</string>
          </property>
          <property name="minimum">
           <number>0</number>
@@ -699,8 +729,7 @@
        <item row="0" column="6">
         <widget class="QLabel" name="lblTimeZone">
          <property name="text">
-          <string>Часовой
-пояс</string>
+          <string>Time zone</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -725,11 +754,14 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="toolTip">
+          <string>Observer time zone (negative west of Greenwich)</string>
+         </property>
          <property name="minimum">
-          <number>-12</number>
+          <number>-18</number>
          </property>
          <property name="maximum">
-          <number>12</number>
+          <number>18</number>
          </property>
          <property name="pageStep">
           <number>1</number>
@@ -760,11 +792,16 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="toolTip">
+          <string>Difference between earth rotation time and terrestrial time.&lt;br&gt;
+It is derived from observation only and is reported in this bulletin: &lt;a href=&quot;http://maia.usno.navy.mil/ser7/ser7.dat&quot;&gt;http://maia.usno.navy.mil/ser7/ser7.dat&lt;/a&gt;,
+where delta_t = 32.184 + (TAI-UTC) - DUT1</string>
+         </property>
          <property name="minimum">
-          <number>-500</number>
+          <number>-8000</number>
          </property>
          <property name="maximum">
-          <number>500</number>
+          <number>8000</number>
          </property>
          <property name="pageStep">
           <number>1</number>
@@ -800,7 +837,7 @@
     <item>
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>При расчётах используется библиотека NREL's Solar Position Algorithm (SPA) (&lt;a href=&quot;http://midcdmz.nrel.gov/spa/&quot;&gt;http://midcdmz.nrel.gov/spa/&lt;/a&gt;)</string>
+       <string>Used library NREL's Solar Position Algorithm (SPA) (&lt;a href=&quot;http://midcdmz.nrel.gov/spa/&quot;&gt;http://midcdmz.nrel.gov/spa/&lt;/a&gt;)</string>
       </property>
      </widget>
     </item>
